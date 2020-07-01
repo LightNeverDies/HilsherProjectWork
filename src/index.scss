@@ -1,0 +1,92 @@
+$size: 150px;
+$font_size : 15px;
+$form_size : 500px;
+$text_color : white;
+
+
+
+.main_container{
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.container{
+    background-color: cornsilk;
+    width:$form_size;
+    display: flex;
+    flex-flow: column;
+    border-style: ridge;
+}
+ 
+.title-container .title {
+    background-color:#8B0000;
+    display:block;
+    text-align: center;
+    color:$text_color;
+    font-size:$font_size;
+}
+
+.container-num-input{
+    display:flex;
+    margin: 0 100px 0 75px;
+    width: $size;
+}
+
+.container-received-input{
+    display: flex;
+    margin: 0 175px 0 150px;
+    width: $size;
+}
+
+
+.container-history{
+    background-color: cornsilk;
+    width:$form_size;
+    border-style: ridge;
+}
+
+.title-history{
+    background-color: #8B0000;
+    display:block;
+    text-align: center;
+    color:$text_color;
+    font-size:$font_size;
+}
+
+
+
+
+
+#sensorList {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #sensorList td, #sensorList th {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  .click{
+    cursor: pointer;
+  }
+
+  h1{
+    display:flex;
+    justify-content: center;
+  }
+
+
+  #sensorList tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #sensorList tr:hover {background-color: #ddd;}
+  
+  #sensorList th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #8B0000;
+    color: $text_color;
+  }
