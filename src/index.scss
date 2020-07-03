@@ -13,9 +13,8 @@ $text_color : white;
 .container{
     background-color: cornsilk;
     width:$form_size;
-    display: flex;
-    flex-flow: column;
     border-style: ridge;
+    height: 80px;
 }
  
 .title-container .title {

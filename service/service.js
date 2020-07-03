@@ -10,6 +10,7 @@ function generateNumber(min,max){
 }
 
 
+
 socket.sockets.on('connection',(socket) =>{
 
     console.log(`A new user connected with [${socket.id}]`)

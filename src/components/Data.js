@@ -21,12 +21,11 @@ class Data extends React.Component{
                 min: this.state.min_number,
                 max: this.state.max_number
             })
-           
         }
     }
+
     
-
-
+    
     componentDidMount()
     {
         this.socket.on('data_generate', (data) =>{
@@ -38,14 +37,15 @@ class Data extends React.Component{
             this.setState({reading_data:dataInformation})
             const currentData = this.state.data;
             const currentDataReceived = currentData.concat(this.state.reading_data)
-            this.setState({data:currentDataReceived}, function(){console.log(this.state.data)})
+            this.setState({data:currentDataReceived})
         }
-        
+
     }
 
 
     render(){
         const {data} = this.state;
+        if(this.state.data.length > 10) {this.state.data.shift()}
         return(
             <div class="main_container" >
             <nav className="container">
@@ -72,7 +72,7 @@ class Data extends React.Component{
                         </tr>
                     </thead>
                     {data.map(reading_result =>
-                    <tbody key={reading_result+reading_result}>
+                    <tbody key="none">
                         <tr>
                             <td>{reading_result}</td>
                         </tr>
