@@ -16,6 +16,7 @@ function createWindow() {
         {nodeIntegration:true}
     });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../public/index.html')}`);
+  mainWindow.once('ready-to-show', () => mainWindow.show());
   mainWindow.on('closed', () => mainWindow = null);
 }
 

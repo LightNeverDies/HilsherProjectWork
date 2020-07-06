@@ -9,7 +9,9 @@ function generateNumber(min,max){
     return Math.ceil((Math.random() * (max-min+1)) + min)
 }
 
-
+function generateString(){
+    
+}
 
 socket.sockets.on('connection',(socket) =>{
 
