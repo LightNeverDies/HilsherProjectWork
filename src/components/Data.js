@@ -65,9 +65,9 @@ class Data extends React.Component{
             </thead>
             
             {this.props.data.map(reading_result =>
-            <tbody key={Date.now().toString() + reading_result.toString()}>
+           <tbody key={reading_result.id}>
                 <tr>
-                    <td>{reading_result}</td>
+                    <td>{reading_result.result}</td>
                 </tr>
             </tbody>
             )}
@@ -87,7 +87,7 @@ class Data extends React.Component{
                             <button onClick={this.sendData}>Received Values</button>
                     </form>
                             <div className="container-received-input">
-                            <input type="text" placeholder="Received Number" value={this.state.reading_data} readOnly></input>
+                            <input type="text" placeholder="Received Number" value={this.state.reading_data.result} readOnly></input>
                             </div>
                             
             </nav>

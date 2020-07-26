@@ -4,13 +4,14 @@ const io = require('socket.io')
 const socket = io(http,{path:'/test'})
 
 const port = process.env.port || 8000;
+const Str = require('@supercharge/strings')
 
 function generateNumber(min,max){
     return Math.ceil((Math.random() * (max-min+1)) + min)
 }
 
 function generateString(){
-    
+    return Str.random()
 }
 
 socket.sockets.on('connection',(socket) =>{
@@ -20,12 +21,14 @@ socket.sockets.on('connection',(socket) =>{
     socket.on('send_data', (data) =>{
         const {min, max} = data
         const result = generateNumber(min,max)
+        const id = generateString()
         console.log(min,max)
+        console.log(id)
 
 
         console.log(result)
     
-        socket.emit('data_generate', result)
+        socket.emit('data_generate', {result : result , id : id})
     })
 
     
