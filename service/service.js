@@ -7,7 +7,9 @@ const port = process.env.port || 8000;
 const Str = require('@supercharge/strings')
 
 function generateNumber(min,max){
-    return Math.ceil((Math.random() * (max-min+1)) + min)
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor((Math.random() * (max - min + 1))) + min
 }
 
 function generateString(){

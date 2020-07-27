@@ -14,7 +14,7 @@
     "dist": "electron-builder",
     "service": "nodemon service/service.js",
     "electron-dev": "concurrently \"SET BROWSER=none&&npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
-    "start": "npm-run-all --parallel react-build electron-dev"
+    "start": "npm-run-all --parallel react-build electron-dev service"
   },
   "keywords": [],
   "author": "",
