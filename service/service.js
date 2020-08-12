@@ -1,44 +1,34 @@
-const app = require('express')();
+const app = require('express')()
 const http = require('http').createServer(app)
-const io = require('socket.io')
-const socket = io(http,{path:'/test'})
+const cors = require('cors')
+const bodyParser = require('body-parser')
 
-const port = process.env.port || 8000;
+const port = process.env.port || 8000
 const Str = require('@supercharge/strings')
 
-function generateNumber(min,max){
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor((Math.random() * (max - min + 1))) + min
-}
+app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
-function generateString(){
-    return Str.random()
-}
-
-socket.sockets.on('connection',(socket) =>{
-
-    console.log(`A new user connected with [${socket.id}]`)
-
-    socket.on('send_data', (data) =>{
-        const {min, max} = data
-        const result = generateNumber(min,max)
-        const id = generateString()
-        console.log(min,max)
-        console.log(id)
-
-
-        console.log(result)
-    
-        socket.emit('data_generate', {result : result , id : id})
-    })
-
-    
-    socket.on('disconnect', () =>{
-        console.log(`User disconnected with [${socket.id}]`)
-    })
-    
+app.use(async (req, res, next) => {
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  res.header('Access-Control-Allow-Headers', 'Content-Type')
+  next()
 })
 
+function generateNumber(min, max) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
 
-http.listen(port,() => console.log(`Listening to port ${port}`))
+function generateString() {
+  return Str.random()
+}
+
+app.get('/', (req, res) => {
+  console.log(req.query)
+  res.send(JSON.stringify(generateNumber(req.query.min, req.query.max)))
+})
+
+http.listen(port, () => console.log(`Listening to port ${port}`))

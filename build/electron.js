@@ -1,23 +1,26 @@
 const electron = require('electron');
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+
+const { app } = electron;
+const { BrowserWindow } = electron;
 
 const path = require('path');
-const url = require('url');
+
 const isDev = require('electron-is-dev');
 
 let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow(
-    { width: 900, 
-      height: 680, 
+    {
+      width: 900,
+      height: 680,
       webPreferences:
-        {nodeIntegration:true}
-    });
+        { nodeIntegration: true },
+    },
+  );
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../public/index.html')}`);
   mainWindow.once('ready-to-show', () => mainWindow.show());
-  mainWindow.on('closed', () => mainWindow = null);
+  mainWindow.on('closed', () => { mainWindow = null; });
 }
 
 app.on('ready', createWindow);
